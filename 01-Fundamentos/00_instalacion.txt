@@ -1,0 +1,383 @@
+===========================================================
+🐘 POSTGRESQL EN UBUNTU
+📘 GUÍA DE INSTALACIÓN Y CONFIGURACIÓN PASO A PASO
+===========================================================
+
+🎯 OBJETIVO
+
+En esta guía aprenderás a:
+
+✅ Instalar PostgreSQL en Ubuntu
+✅ Configurar PostgreSQL para aceptar conexiones remotas
+✅ Configurar autenticación segura con contraseña cifrada
+✅ Permitir conexiones desde clientes externos
+✅ Validar que el servicio funciona correctamente
+
+⚠️ IMPORTANTE:
+En esta documentación NO vamos a crear bases de datos,
+tablas ni usuarios nuevos. Solo instalación,
+configuración y validación.
+
+
+===========================================================
+🧩 PASO 1: INSTALAR POSTGRESQL
+===========================================================
+
+Ejecuta:
+
+sudo apt update
+sudo apt install postgresql
+
+
+🔍 ¿Qué hace cada comando?
+
+📦 apt update
+Actualiza la lista de paquetes disponibles en Ubuntu.
+
+🐘 apt install postgresql
+Descarga e instala PostgreSQL junto con todas
+sus dependencias.
+
+
+===========================================================
+🔎 VALIDAR QUE LA INSTALACIÓN FUE EXITOSA
+===========================================================
+
+Ejecuta:
+
+sudo systemctl status postgresql
+
+
+🔍 ¿Qué hace?
+
+💡 systemctl permite administrar servicios en Linux.
+
+📌 status consulta el estado actual del servicio.
+
+Si todo está correcto deberías ver algo similar a:
+
+active (running)
+
+✅ Esto significa que PostgreSQL está funcionando.
+
+
+===========================================================
+📂 PASO 2: IR A LOS ARCHIVOS DE CONFIGURACIÓN
+===========================================================
+
+Ejecuta:
+
+cd /etc/postgresql
+
+
+🔍 ¿Qué hace?
+⚙️ /etc/postgresql
+Es la carpeta donde PostgreSQL guarda
+sus archivos de configuración.
+
+
+===========================================================
+🔎 VER LA VERSIÓN INSTALADA
+===========================================================
+
+Ejecuta:
+
+ls
+
+
+Podrás ver algo como:
+
+16
+
+💡 Eso significa que tienes instalada la versión 16.
+
+
+Ahora entra a esa versión:
+
+cd 16/main
+
+⚠️ Cambia 16 por la versión que tengas instalada.
+
+
+===========================================================
+🌐 PASO 3: HABILITAR CONEXIONES REMOTAS
+===========================================================
+
+Abrir archivo de configuración:
+
+sudo nano postgresql.conf
+
+
+🔍 ¿Qué hace?
+Dentro del archivo busca esta línea:
+
+#listen_addresses = 'localhost'
+Y reemplázala por:
+listen_addresses = '*'
+
+
+🔍 ¿Qué significa?
+
+🏠 localhost
+Solo acepta conexiones desde la misma máquina.
+
+🌍 *
+Acepta conexiones desde cualquier dirección IP autorizada.
+
+
+⚠️ IMPORTANTE:
+
+El símbolo:
+
+#
+
+significa comentario.
+
+Debes quitarlo para activar la configuración.
+
+
+💾 Guardar cambios y Salir:
+
+
+
+===========================================================
+🖥️ PASO 4: ENTRAR A LA CONSOLA DE POSTGRESQL
+===========================================================
+
+Ejecuta:
+
+sudo -u postgres psql
+
+🔍 ¿Qué hace?
+
+👤 -u postgres
+Ejecuta el comando usando el usuario interno
+de PostgreSQL.
+
+🐘 psql
+Abre la terminal interactiva de PostgreSQL.
+
+
+Si todo está bien verás algo como:
+
+postgres=#
+
+
+✅ Ya estás dentro de PostgreSQL.
+
+
+===========================================================
+🔐 PASO 5: CONFIGURAR CONTRASEÑA CIFRADA
+===========================================================
+
+Dentro de PostgreSQL ejecuta:
+
+ALTER USER nombre_usuario
+WITH ENCRYPTED PASSWORD 'tu_password';
+
+
+🔍 ¿Qué hace?
+
+👤 ALTER USER
+Modifica un usuario existente.
+
+🔒 ENCRYPTED PASSWORD
+Guarda la contraseña de forma cifrada.
+
+
+Si sale:
+
+ALTER ROLE
+
+✅ La contraseña fue actualizada correctamente.
+
+
+Salir con:
+
+\q
+
+
+===========================================================
+🌐 PASO 6: OBTENER LA IP DEL SERVIDOR
+===========================================================
+
+Ejecuta cualquiera de estos comandos:
+
+ip addr
+
+o
+
+ifconfig
+
+
+🔍 ¿Qué hacen?
+
+📡 Muestran la configuración de red del equipo.
+
+Busca algo similar a:
+
+192.168.1.100
+
+
+📝 Guarda esa IP, la necesitarás después.
+
+
+===========================================================
+🛡️ PASO 7: CONFIGURAR ACCESOS REMOTOS
+===========================================================
+
+Abrir archivo:
+
+sudo nano pg_hba.conf
+
+
+🔍 ¿Qué es pg_hba.conf?
+
+Es el archivo que controla:
+
+👤 Quién puede conectarse
+🌐 Desde qué IP
+🗄️ A qué base de datos
+🔐 Con qué método de autenticación
+
+
+Ir al final del archivo y agregar:
+
+
+hostssl nombre_bd nombre_usuario TU_IP/32 scram-sha-256
+
+host nombre_bd nombre_usuario 0.0.0.0/0 scram-sha-256
+
+
+🔍 Explicación:
+
+🔒 hostssl
+Permite conexiones usando SSL.
+
+🌐 host
+Permite conexiones por red.
+
+🗄️ nombre_bd
+Base de datos permitida.
+
+👤 nombre_usuario
+Usuario autorizado.
+
+📡 TU_IP/32
+Permite únicamente esa IP.
+
+🌍 0.0.0.0/0
+Permite cualquier IP.
+
+🔐 scram-sha-256
+Método moderno de autenticación segura.
+
+
+💾 Guardar y salir
+
+
+===========================================================
+🔄 PASO 8: REINICIAR POSTGRESQL
+===========================================================
+
+Ejecuta:
+
+sudo systemctl restart postgresql
+
+
+🔍 ¿Qué hace?
+
+♻️ Reinicia PostgreSQL para aplicar
+la nueva configuración.
+
+
+===========================================================
+✅ PASO 9: VALIDAR EL SERVICIO
+===========================================================
+
+Ejecuta:
+
+sudo systemctl status postgresql
+
+
+Debe aparecer:
+
+active (running)
+
+
+🎉 Esto significa que PostgreSQL está activo.
+
+
+===========================================================
+💻 PASO 10: INSTALAR CLIENTE POSTGRESQL
+===========================================================
+
+Ejecuta:
+
+sudo apt install postgresql-client
+
+
+🔍 ¿Qué hace?
+
+💻 Instala solo el cliente psql.
+
+⚠️ No instala el servidor.
+
+
+===========================================================
+🌐 PASO 11: PROBAR CONEXIÓN REMOTA
+===========================================================
+
+Ejecuta:
+
+psql --host IP_SERVIDOR \
+--username nombre_usuario \
+--password \
+--dbname nombre_bd
+
+
+Ejemplo:
+
+psql --host 192.168.1.100 \
+--username postgres \
+--password \
+--dbname postgres
+
+
+🔍 ¿Qué hace cada parámetro?
+
+🌐 --host
+IP del servidor.
+
+👤 --username
+Usuario de PostgreSQL.
+
+🔑 --password
+Solicita la contraseña.
+
+🗄️ --dbname
+Base de datos a la que te conectarás.
+
+
+Si todo está correcto verás:
+
+postgres=#
+
+
+🎉 ¡Conexión exitosa!
+
+===========================================================
+🎉 FIN DE LA CONFIGURACIÓN
+===========================================================
+
+Si llegaste hasta aquí, ya tienes:
+
+✅ PostgreSQL instalado
+✅ PostgreSQL configurado
+✅ Acceso remoto habilitado
+✅ Autenticación segura configurada
+✅ Cliente conectado correctamente
+
+🚀 Ya estás listo para comenzar a trabajar
+con PostgreSQL.
+===========================================================

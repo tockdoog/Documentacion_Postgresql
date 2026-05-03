@@ -1,0 +1,43 @@
+===========================================================
+🔍 COMANDOS DE VALIDACIÓN EN POSTGRESQL
+===========================================================
+
+
+👤 Ver usuario actual:
+
+SELECT current_user;
+
+
+🗄️ Ver base de datos actual:
+
+SELECT current_database();
+
+
+🐘 Ver versión instalada:
+
+SELECT version();
+
+
+🌐 Ver IP del servidor:
+
+SELECT inet_server_addr();
+
+
+👂 Ver configuración de escucha:
+
+SHOW listen_addresses;
+
+
+📋 Ver tablas existentes:
+
+\dt
+
+
+❓ Ver ayuda de comandos:
+
+\?
+
+
+🚪 Salir de PostgreSQL:
+
+\q

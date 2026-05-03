@@ -172,7 +172,7 @@ postgres=#
 
 Dentro de PostgreSQL ejecuta:
 
-ALTER USER nombre_usuario
+ALTER USER postgres
 WITH ENCRYPTED PASSWORD 'tu_password';
 
 
@@ -241,12 +241,15 @@ Es el archivo que controla:
 🔐 Con qué método de autenticación
 
 
-Ir al final del archivo y agregar:
+Ir al final del archivo y agregar en la tabla:
 
+# TYPE      DATABASE     USER      ADDRESS        METHOD
 
-hostssl nombre_bd nombre_usuario TU_IP/32 scram-sha-256
+# Conexiones SSL desde tu red
+hostssl    postgres    postgres    IP/32      scram-sha-256
 
-host nombre_bd nombre_usuario 0.0.0.0/0 scram-sha-256
+# Conexiones normales desde cualquier IPv4
+host       postgres    postgres    0.0.0.0/0   scram-sha-256
 
 
 🔍 Explicación:
@@ -333,15 +336,12 @@ Ejecuta:
 psql --host IP_SERVIDOR \
 --username nombre_usuario \
 --password \
---dbname nombre_bd
+--dbname nombre_bdp
 
 
 Ejemplo:
 
-psql --host 192.168.1.100 \
---username postgres \
---password \
---dbname postgres
+psql --host 192.168.1.100 --username postgres --password --dbname postgres
 
 
 🔍 ¿Qué hace cada parámetro?

@@ -1,0 +1,330 @@
+
+===========================================================
+🐘 ¿QUÉ ES PGADMIN?
+===========================================================
+
+pgAdmin es la herramienta gráfica oficial de:
+
+PostgreSQL 🐘
+
+Su objetivo es permitir administrar PostgreSQL
+de una manera visual, sin depender completamente
+de la terminal.
+
+Con pgAdmin podrás:
+
+👀 Visualizar servidores
+🗄️ Explorar bases de datos
+📋 Consultar tablas
+⚙️ Administrar configuraciones
+🔍 Ejecutar consultas SQL
+📊 Monitorear conexiones
+🛠️ Administrar objetos de PostgreSQL
+
+===========================================================
+🌐 PASO 1: DESCARGAR PGADMIN
+===========================================================
+
+Ir al sitio oficial:
+
+https://www.pgadmin.org/download/pgadmin-4-windows/
+
+
+🔍 ¿Qué encontrarás?
+
+La página oficial de descarga de pgAdmin
+para Windows.
+Ahora debes:
+
+✅ Seleccionar la versión más reciente
+✅ Descargar el instalador ".exe"
+
+
+Ejemplo:
+
+pgadmin4-xxxx-x64.exe
+
+
+⏳ Espera a que termine la descarga.
+===========================================================
+📥 PASO 2: EJECUTAR EL INSTALADOR
+===========================================================
+
+Haz doble clic sobre el archivo descargado.
+
+Windows mostrará una ventana de seguridad
+como esta:
+
+"¿Desea permitir que esta aplicación
+realice cambios en el dispositivo?"
+
+Haz clic en:
+✅ Sí
+Esto permitirá iniciar el proceso
+de instalación.
+
+
+===========================================================
+⚙️ PASO 3: INSTALAR PGADMIN
+===========================================================
+
+Se abrirá el asistente de instalación.
+
+===========================================================
+📝 PANTALLA 1: BIENVENIDA
+===========================================================
+
+Haz clic en:
+Next ➡️
+
+
+===========================================================
+📄 PANTALLA 2: LICENCIA
+===========================================================
+
+Acepta los términos de licencia:
+✅ I accept the agreement
+Luego:
+Next ➡️
+
+
+===========================================================
+📂 PANTALLA 3: RUTA DE INSTALACIÓN
+===========================================================
+
+Verás una ruta similar a:
+C:\Program Files\pgAdmin 4
+💡 Puedes dejar la ruta por defecto.
+Haz clic en:
+Next ➡️
+
+
+===========================================================
+⚙️ PANTALLA 4: COMPONENTES
+===========================================================
+
+Deja la configuración por defecto.
+Haz clic en:
+Next ➡️
+
+
+===========================================================
+🚀 PANTALLA 5: INSTALACIÓN
+===========================================================
+
+Haz clic en:
+Install
+
+⏳ Espera unos minutos mientras Windows
+instala pgAdmin.
+
+
+⚠️ IMPORTANTE:
+
+pgAdmin NO instala PostgreSQL.
+
+pgAdmin solamente instala
+la interfaz gráfica.
+
+
+===========================================================
+✅ PANTALLA FINAL
+===========================================================
+
+Cuando termine, haz clic en:
+Finish 🎉
+
+
+===========================================================
+🚀 PASO 4: ABRIR PGADMIN
+===========================================================
+
+Buscar en Windows:
+pgAdmin 4
+
+Haz clic para abrirlo.
+⏳ La primera apertura puede tardar
+unos segundos.
+
+
+===========================================================
+🔐 PASO 5: CONFIGURAR CONTRASEÑA MAESTRA
+===========================================================
+
+La primera vez que abras pgAdmin,
+te pedirá una:
+
+Master Password
+🔍 ¿Qué es?
+
+Es una contraseña interna de pgAdmin
+para proteger tus conexiones guardadas.
+
+
+⚠️ IMPORTANTE:
+Esta NO es la contraseña de PostgreSQL.
+
+
+Debes:
+
+🔑 Crear una contraseña
+🔑 Confirmarla
+
+
+Luego:
+
+OK ✅
+
+
+💡 Guarda esta contraseña.
+
+
+===========================================================
+🖥️ PASO 6: AGREGAR UN NUEVO SERVIDOR
+===========================================================
+
+En el panel izquierdo verás:
+Servers
+Haz clic derecho sobre:
+Servers
+Luego selecciona:
+Register → Server...
+o también:
+Add New Server ➕
+
+
+===========================================================
+🏷️ PASO 7: CONFIGURAR EL NOMBRE DEL SERVIDOR
+===========================================================
+
+Se abrirá una ventana con varias pestañas.
+
+
+En la pestaña:
+General
+Verás:
+Name
+Escribe un nombre descriptivo.
+Ejemplo:
+Servidor Desarrollo
+o
+PostgreSQL Local
+
+
+===========================================================
+🌐 PASO 8: CONFIGURAR LA CONEXIÓN
+===========================================================
+
+Ir a la pestaña:
+
+Connection
+Verás los siguientes campos:
+
+
+-----------------------------------------------------------
+🌐 Host name/address
+-----------------------------------------------------------
+
+Aquí debes colocar la IP
+del servidor PostgreSQL.
+
+
+Ejemplo:
+
+192.168.1.100
+
+
+💡 Es la IP que obtuviste con:
+
+ip addr
+
+o
+
+ifconfig
+
+
+-----------------------------------------------------------
+📡 Port
+-----------------------------------------------------------
+
+Puerto de PostgreSQL.
+
+
+Por defecto es:
+
+5432
+
+
+⚠️ No lo cambies, salvo que tu servidor
+use otro puerto.
+
+
+-----------------------------------------------------------
+🗄️ Maintenance database
+-----------------------------------------------------------
+
+Base inicial de conexión.
+
+
+Usualmente:
+postgres
+
+
+-----------------------------------------------------------
+👤 Username
+-----------------------------------------------------------
+
+Usuario configurado en PostgreSQL.
+
+
+Ejemplo:
+postgres
+
+-----------------------------------------------------------
+🔑 Password
+-----------------------------------------------------------
+
+La contraseña que configuraste con:
+
+ALTER USER ...
+Escríbela aquí.
+Opcional:
+✅ Save password
+Para no escribirla nuevamente.
+
+
+===========================================================
+💾 PASO 9: GUARDAR LA CONEXIÓN
+===========================================================
+
+Haz clic en:
+Save 💾
+
+pgAdmin intentará conectarse
+al servidor.
+
+
+===========================================================
+✅ PASO 10: VALIDAR LA CONEXIÓN
+===========================================================
+
+Si todo está correcto verás
+en el panel izquierdo:
+
+
+Servers
+└── Tu servidor
+
+
+Y podrás expandir opciones como:
+
+
+📂 Databases
+📂 Login/Group Roles
+📂 Tablespaces
+
+
+🎉 Esto significa que la conexión
+fue exitosa.
+
+

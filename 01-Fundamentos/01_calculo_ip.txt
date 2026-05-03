@@ -1,0 +1,391 @@
+```txt id="32741"
+===========================================================
+🌐 ENTENDIENDO IPS, MÁSCARAS Y REDES PARA pg_hba.conf
+📘 GUÍA PASO A PASO
+===========================================================
+
+🎯 OBJETIVO
+
+Aprender a calcular correctamente la red
+que debemos usar dentro del archivo:
+
+pg_hba.conf
+
+Ejemplo:
+
+
+host postgres postgres RED/CIDR scram-sha-256
+
+
+⚠️ IMPORTANTE
+
+En PostgreSQL normalmente NO usamos:
+
+❌ Una IP individual
+
+Sino:
+
+✅ Una red completa
+
+
+===========================================================
+🧩 PASO 1: OBTENER LA INFORMACIÓN DE RED
+===========================================================
+
+En Linux ejecutar:
+
+ifconfig
+
+o
+
+ip addr
+
+
+Ejemplo de salida:
+
+
+inet 192.168.25.34
+netmask 255.255.240.0
+broadcast 192.168.31.255
+
+
+De aquí obtenemos 3 datos:
+
+
+🖥️ IP:
+
+192.168.25.34
+
+
+🛡️ Máscara:
+
+255.255.240.0
+
+
+📡 Broadcast:
+
+192.168.31.255
+
+
+-----------------------------------------------------------
+🔍 ¿Qué significa cada uno?
+-----------------------------------------------------------
+
+
+🖥️ IP
+
+Es la dirección exacta de tu equipo.
+
+
+🛡️ Máscara
+
+Define qué parte pertenece a la red
+y qué parte pertenece al equipo.
+
+
+📡 Broadcast
+
+Es la última dirección de la red.
+
+
+===========================================================
+🧩 PASO 2: DIVIDIR LA IP EN BLOQUES
+===========================================================
+
+Toda IP tiene 4 bloques
+(llamados octetos).
+
+
+Ejemplo:
+
+
+192 . 168 . 25 . 34
+ ↑      ↑      ↑     ↑
+ 1      2      3     4
+
+
+⚠️ Guarda esto:
+
+Cada bloque puede tener valores
+desde:
+
+0 hasta 255
+
+
+===========================================================
+🧩 PASO 3: IDENTIFICAR EL OCTETO IMPORTANTE
+===========================================================
+
+Tomamos la máscara:
+
+
+255.255.240.0
+
+
+Buscamos el primer número
+que NO sea 255.
+
+
+255 . 255 . 240 . 0
+             ↑
+
+
+Ese es el octeto importante.
+
+
+En este ejemplo:
+
+
+240
+
+
+⚠️ Todo el cálculo se hará
+sobre ese octeto.
+
+
+===========================================================
+🧮 PASO 4: CALCULAR EL TAMAÑO DEL BLOQUE
+===========================================================
+
+Usamos esta fórmula:
+
+
+256 - valor_mascara
+
+
+Ejemplo:
+
+
+256 - 240
+
+
+Resultado:
+
+
+16
+
+
+🎉 Esto significa que
+la red avanza de:
+
+16 en 16
+
+
+===========================================================
+📦 PASO 5: GENERAR LA LISTA DE BLOQUES
+===========================================================
+
+Como el bloque vale:
+
+
+16
+
+
+Ahora contamos:
+
+
+0
+16
+32
+48
+64
+80
+96
+112
+128
+144
+160
+176
+192
+208
+224
+240
+
+
+⚠️ Esta es la lista de bloques
+posibles para la red.
+
+
+===========================================================
+🔍 PASO 6: BUSCAR EL OCTETO DE NUESTRA IP
+===========================================================
+
+Nuestra IP era:
+
+
+192.168.25.34
+
+
+Tomamos el mismo octeto
+que usamos en la máscara:
+
+
+192 . 168 . 25 . 34
+             ↑
+
+
+Nuestro número es:
+
+
+25
+
+
+===========================================================
+📍 PASO 7: UBICAR EL NÚMERO EN LOS BLOQUES
+===========================================================
+
+Miramos dónde cae el 25:
+
+
+0  → 15
+
+16 → 31   ✅ aquí cae 25
+
+32 → 47
+
+48 → 63
+
+
+🎉 Encontramos el bloque.
+
+
+===========================================================
+🌐 PASO 8: OBTENER LA RED
+===========================================================
+
+El bloque empieza en:
+
+
+16
+
+
+Por lo tanto la red será:
+
+
+192.168.16.0
+
+
+⚠️ El número 25 desaparece.
+
+Siempre usamos:
+
+✅ El INICIO del bloque
+
+
+===========================================================
+🛡️ PASO 9: OBTENER EL CIDR
+===========================================================
+
+Tomamos la máscara:
+
+
+255.255.240.0
+
+
+Ahora contamos bits.
+
+
+255 = 8 bits
+
+255 = 8 bits
+
+240 = 4 bits
+
+0 = 0 bits
+
+
+Sumamos:
+
+
+8 + 8 + 4 = 20
+
+
+Resultado:
+
+
+/20
+
+
+===========================================================
+🎯 RESULTADO FINAL
+===========================================================
+
+IP original:
+
+
+192.168.25.34
+
+
+Máscara:
+
+
+255.255.240.0
+
+
+Tamaño del bloque:
+
+
+16
+
+
+Octeto usado:
+
+
+25
+
+
+Bloque encontrado:
+
+
+16 → 31
+
+
+Red calculada:
+
+
+192.168.16.0
+
+
+CIDR:
+
+
+/20
+
+
+Red final:
+
+
+192.168.16.0/20
+
+
+===========================================================
+🐘 USO EN pg_hba.conf
+===========================================================
+
+Ahora sí podemos escribir:
+
+
+host postgres postgres 192.168.16.0/20 scram-sha-256
+
+
+o
+
+
+hostssl postgres postgres 192.168.16.0/20 scram-sha-256
+
+
+===========================================================
+💡 SI SOLO QUIERES UNA IP EXACTA
+===========================================================
+
+Usar:
+
+
+192.168.25.34/32
+
+
+🔍 ¿Qué significa /32?
+
+Permitir únicamente
+esa IP exacta.
+

@@ -1,0 +1,84 @@
+========================================
+🐘 POSTGRESQL
+📘 Crear y Configurar una Base de Datos
+📘 Crear Tablas Correctamente
+📍 Guía usando TERMINAL (psql)
+========================================
+
+
+========================================
+1 ENTRAR A POSTGRESQL
+========================================
+
+📌 Linux/Mac:
+
+sudo -u postgres psql
+
+
+========================================
+2 COMANDOS BÁSICOS DE psql
+========================================
+
+📌 Ver bases de datos:
+
+\l
+
+📌 Ver tablas:
+
+\dt
+
+📌 Ver estructura de una tabla:
+
+\d nombre_tabla
+
+========================================
+3 CREAR UNA BASE DE DATOS
+========================================
+
+📌 Sintaxis:
+
+CREATE DATABASE nombre_bd;
+
+📌 Ejemplo:
+
+CREATE DATABASE sistema_db;
+
+📖 EXPLICACIÓN:
+
+CREATE DATABASE
+→ crea una nueva base de datos.
+
+sistema_db
+→ nombre de la base de datos.
+
+========================================
+4 RENOMBRAR UNA BASE DE DATOS
+========================================
+
+📌 Sintaxis:
+
+ALTER DATABASE nombre_actual
+RENAME TO nuevo_nombre;
+
+
+========================================
+5 ELIMINAR UNA BASE DE DATOS
+========================================
+
+📌 Sintaxis:
+
+DROP DATABASE nombre_bd;
+
+
+forzar eliminación:
+
+-- Cambiar a otra base de datos
+\c postgres
+
+-- Cerrar conexiones activas
+SELECT pg_terminate_backend(pid)
+FROM pg_stat_activity
+WHERE datname = 'softlegacy';
+
+-- Eliminar la base de datos
+DROP DATABASE softlegacy;

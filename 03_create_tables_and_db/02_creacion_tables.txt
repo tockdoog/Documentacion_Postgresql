@@ -1,0 +1,187 @@
+========================================
+1 CREAR TABLAS
+========================================
+
+📌 Sintaxis general:
+
+CREATE TABLE nombre_tabla (
+    columna tipo restricciones
+);
+
+========================================
+2 TIPOS DE DATOS MÁS USADOS
+========================================
+
+INTEGER
+→ números enteros
+
+VARCHAR(n)
+→ texto corto con límite
+
+TEXT
+→ texto largo
+
+BOOLEAN
+→ true o false
+
+DATE
+→ fecha
+
+TIMESTAMP
+→ fecha y hora
+
+NUMERIC
+→ números decimales
+
+SERIAL
+→ número autoincremental
+
+========================================
+3 CREAR UNA TABLA CORRECTAMENTE
+========================================
+
+📌 Ejemplo:
+
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    edad INTEGER,
+    activo BOOLEAN DEFAULT true,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+========================================
+📖 EXPLICACIÓN DE LA TABLA
+========================================
+
+🆔 id SERIAL PRIMARY KEY
+
+SERIAL
+→ genera números automáticos.
+
+PRIMARY KEY
+→ identificador único.
+
+----------------------------------------
+
+✍️ nombre VARCHAR(100) NOT NULL
+
+VARCHAR(100)
+→ máximo 100 caracteres.
+
+NOT NULL
+→ obligatorio.
+
+----------------------------------------
+
+📧 email VARCHAR(150) UNIQUE NOT NULL
+
+UNIQUE
+→ no permite repetidos.
+
+----------------------------------------
+
+🔢 edad INTEGER
+
+INTEGER
+→ números enteros.
+
+----------------------------------------
+
+✅ activo BOOLEAN DEFAULT true
+
+BOOLEAN
+→ true o false.
+
+DEFAULT true
+→ valor por defecto.
+
+----------------------------------------
+
+🕒 creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+TIMESTAMP
+→ fecha y hora.
+
+CURRENT_TIMESTAMP
+→ guarda fecha actual automáticamente.
+
+========================================
+4 VER LAS TABLAS
+========================================
+
+\dt
+
+========================================
+5 VER LA ESTRUCTURA DE UNA TABLA
+========================================
+
+📌 Sintaxis:
+
+\d nombre_tabla
+
+📌 Ejemplo:
+
+\d usuarios
+
+========================================
+6 CREAR TABLAS RELACIONADAS
+========================================
+
+📌 Tabla productos:
+
+CREATE TABLE productos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio NUMERIC(10,2) NOT NULL
+);
+
+----------------------------------------
+
+📌 Tabla pedidos:
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+
+    usuario_id INTEGER NOT NULL,
+    producto_id INTEGER NOT NULL,
+
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_usuario
+    FOREIGN KEY(usuario_id)
+    REFERENCES usuarios(id),
+
+    CONSTRAINT fk_producto
+    FOREIGN KEY(producto_id)
+    REFERENCES productos(id)
+);
+
+========================================
+📖 EXPLICACIÓN
+========================================
+
+FOREIGN KEY
+→ conecta tablas.
+
+REFERENCES usuarios(id)
+→ usa el id de usuarios.
+
+REFERENCES productos(id)
+→ usa el id de productos.
+
+✅ Esto crea relaciones entre tablas.
+
+========================================
+1️⃣ORDEN CORRECTO DE CREACIÓN
+========================================
+
+1️⃣ Crear usuario
+2️⃣ Crear base de datos
+3️⃣ Dar permisos
+4️⃣ Conectarse a la DB
+5️⃣ Crear tablas principales
+6️⃣ Crear tablas relacionadas
+
+=========================================

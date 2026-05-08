@@ -1,0 +1,527 @@
+```txt id="y8m2qp"
+========================================
+🐘 POSTGRESQL + pgAdmin
+📘 Crear y Configurar una Base de Datos
+📘 Crear Tablas Correctamente
+📍 Guía usando pgAdmin
+========================================
+
+OBJETIVO:
+Aprender desde cero cómo:
+
+✅ Abrir pgAdmin
+✅ Crear una conexión
+✅ Crear una base de datos
+✅ Crear usuarios
+✅ Configurar permisos
+✅ Crear tablas correctamente
+✅ Crear relaciones entre tablas
+
+========================================
+1️⃣ ¿QUÉ ES pgAdmin?
+========================================
+
+pgAdmin es la interfaz gráfica oficial de PostgreSQL.
+
+Permite administrar PostgreSQL sin usar terminal.
+
+Con pgAdmin puedes:
+
+✅ Crear bases de datos
+✅ Crear tablas
+✅ Ejecutar SQL
+✅ Administrar usuarios
+✅ Ver relaciones
+✅ Hacer backups
+
+========================================
+2️⃣ ABRIR pgAdmin
+========================================
+
+📌 Windows:
+
+Abrir:
+pgAdmin 4
+
+📌 Linux:
+
+Buscar:
+pgAdmin
+
+📌 macOS:
+
+Abrir:
+pgAdmin 4
+
+========================================
+3️⃣ INTERFAZ PRINCIPAL
+========================================
+
+📌 Panel izquierdo:
+
+Servers
+└── PostgreSQL
+    └── Databases
+
+📌 Panel central:
+
+Zona de administración.
+
+📌 Query Tool:
+
+Editor SQL para ejecutar consultas.
+
+========================================
+4️⃣ CONECTARSE AL SERVIDOR
+========================================
+
+📌 Al abrir pgAdmin:
+
+1️⃣ Click en:
+Servers
+
+2️⃣ Seleccionar:
+PostgreSQL
+
+3️⃣ Ingresar password del usuario postgres.
+
+✅ Ahora estás conectado.
+
+========================================
+5️⃣ CREAR UNA BASE DE DATOS
+========================================
+
+📌 PASOS:
+
+1️⃣ Expandir:
+Servers
+
+2️⃣ Expandir:
+PostgreSQL
+
+3️⃣ Click derecho en:
+Databases
+
+4️⃣ Seleccionar:
+Create → Database
+
+========================================
+6️⃣ CONFIGURAR LA BASE DE DATOS
+========================================
+
+📌 En el formulario:
+
+Database:
+app_db
+
+Owner:
+postgres
+
+----------------------------------------
+
+📌 Ejemplo:
+
+Database:
+sistema_db
+
+Owner:
+postgres
+
+----------------------------------------
+
+5️⃣ Click en:
+Save
+
+✅ Base de datos creada.
+
+========================================
+7️⃣ CREAR UN USUARIO
+========================================
+
+📌 PASOS:
+
+1️⃣ Expandir:
+Login/Group Roles
+
+2️⃣ Click derecho
+
+3️⃣ Seleccionar:
+Create → Login/Group Role
+
+========================================
+8️⃣ CONFIGURAR EL USUARIO
+========================================
+
+📌 En "General":
+
+Name:
+app_user
+
+----------------------------------------
+
+📌 En "Definition":
+
+Password:
+123456
+
+----------------------------------------
+
+📌 En "Privileges":
+
+Can login?
+✅ YES
+
+----------------------------------------
+
+5️⃣ Click:
+Save
+
+✅ Usuario creado.
+
+========================================
+9️⃣ DAR PERMISOS AL USUARIO
+========================================
+
+📌 PASOS:
+
+1️⃣ Click derecho sobre:
+sistema_db
+
+2️⃣ Seleccionar:
+Properties
+
+3️⃣ Ir a:
+Security
+
+4️⃣ Agregar usuario:
+app_user
+
+5️⃣ Activar permisos:
+
+✅ CONNECT
+✅ CREATE
+✅ TEMPORARY
+
+6️⃣ Click:
+Save
+
+========================================
+🔟 ABRIR QUERY TOOL
+========================================
+
+📌 PASOS:
+
+1️⃣ Seleccionar la base de datos.
+
+2️⃣ Click en:
+
+Tools → Query Tool
+
+✅ Se abrirá el editor SQL.
+
+========================================
+1️⃣1️⃣ CREAR TABLAS CON SQL
+========================================
+
+📌 Ejemplo:
+
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    activo BOOLEAN DEFAULT true,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+========================================
+📖 EXPLICACIÓN
+========================================
+
+SERIAL
+→ número automático.
+
+PRIMARY KEY
+→ identificador único.
+
+VARCHAR(100)
+→ texto máximo 100 caracteres.
+
+NOT NULL
+→ obligatorio.
+
+UNIQUE
+→ no permite repetidos.
+
+DEFAULT
+→ valor por defecto.
+
+========================================
+1️⃣2️⃣ EJECUTAR SQL
+========================================
+
+📌 Para ejecutar:
+
+Click en:
+▶ Execute
+
+o presionar:
+
+F5
+
+✅ Tabla creada.
+
+========================================
+1️⃣3️⃣ VER LAS TABLAS
+========================================
+
+📌 Ruta:
+
+Databases
+└── sistema_db
+    └── Schemas
+        └── public
+            └── Tables
+
+✅ Aquí aparecerán las tablas.
+
+========================================
+1️⃣4️⃣ CREAR TABLAS DESDE INTERFAZ
+========================================
+
+📌 PASOS:
+
+1️⃣ Click derecho en:
+Tables
+
+2️⃣ Seleccionar:
+Create → Table
+
+========================================
+1️⃣5️⃣ CONFIGURAR TABLA
+========================================
+
+📌 En "General":
+
+Name:
+usuarios
+
+----------------------------------------
+
+📌 Ir a:
+Columns
+
+Agregar columnas.
+
+========================================
+1️⃣6️⃣ CREAR COLUMNAS
+========================================
+
+📌 Ejemplo:
+
+----------------------------------------
+Columna:
+id
+----------------------------------------
+
+Type:
+serial
+
+Primary Key:
+✅
+
+Not NULL:
+✅
+
+----------------------------------------
+Columna:
+nombre
+----------------------------------------
+
+Type:
+varchar(100)
+
+Not NULL:
+✅
+
+----------------------------------------
+Columna:
+email
+----------------------------------------
+
+Type:
+varchar(150)
+
+Unique:
+✅
+
+----------------------------------------
+Columna:
+creado_en
+----------------------------------------
+
+Type:
+timestamp
+
+Default:
+CURRENT_TIMESTAMP
+
+========================================
+1️⃣7️⃣ GUARDAR TABLA
+========================================
+
+📌 Click:
+Save
+
+✅ Tabla creada.
+
+========================================
+1️⃣8️⃣ CREAR RELACIONES ENTRE TABLAS
+========================================
+
+📌 Crear tabla productos:
+
+CREATE TABLE productos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio NUMERIC(10,2) NOT NULL
+);
+
+----------------------------------------
+
+📌 Crear tabla pedidos:
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+
+    usuario_id INTEGER NOT NULL,
+    producto_id INTEGER NOT NULL,
+
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_usuario
+    FOREIGN KEY(usuario_id)
+    REFERENCES usuarios(id),
+
+    CONSTRAINT fk_producto
+    FOREIGN KEY(producto_id)
+    REFERENCES productos(id)
+);
+
+========================================
+📖 EXPLICACIÓN
+========================================
+
+FOREIGN KEY
+→ crea relaciones.
+
+REFERENCES
+→ referencia otra tabla.
+
+usuario_id
+→ conectado con usuarios(id).
+
+producto_id
+→ conectado con productos(id).
+
+========================================
+1️⃣9️⃣ VER DATOS DE UNA TABLA
+========================================
+
+📌 PASOS:
+
+1️⃣ Click derecho sobre la tabla.
+
+2️⃣ Seleccionar:
+
+View/Edit Data
+→ All Rows
+
+✅ Verás los registros.
+
+========================================
+2️⃣0️⃣ ELIMINAR TABLAS
+========================================
+
+📌 PASOS:
+
+1️⃣ Click derecho sobre la tabla.
+
+2️⃣ Seleccionar:
+Delete/Drop
+
+⚠️ Esto elimina la tabla completamente.
+
+========================================
+2️⃣1️⃣ ELIMINAR BASE DE DATOS
+========================================
+
+📌 PASOS:
+
+1️⃣ Click derecho sobre la DB.
+
+2️⃣ Seleccionar:
+Delete/Drop
+
+⚠️ Esto elimina TODA la base de datos.
+
+========================================
+2️⃣2️⃣ BUENAS PRÁCTICAS
+========================================
+
+✅ usar snake_case
+✅ usar PRIMARY KEY
+✅ usar FOREIGN KEY
+✅ usar nombres claros
+✅ usar NOT NULL
+✅ usar UNIQUE para emails
+✅ usar TIMESTAMP para auditoría
+========================================
+2️⃣4️⃣ ORDEN CORRECTO DE CREACIÓN
+========================================
+
+1️⃣ Crear usuario
+2️⃣ Crear base de datos
+3️⃣ Dar permisos
+4️⃣ Abrir Query Tool
+5️⃣ Crear tablas
+6️⃣ Crear relaciones
+
+========================================
+2️⃣5️⃣ EJEMPLO COMPLETO
+========================================
+
+📌 Crear tabla usuarios:
+
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+----------------------------------------
+
+📌 Crear tabla publicaciones:
+
+CREATE TABLE publicaciones (
+    id SERIAL PRIMARY KEY,
+
+    usuario_id INTEGER NOT NULL,
+
+    titulo VARCHAR(200) NOT NULL,
+    contenido TEXT NOT NULL,
+
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_usuario
+    FOREIGN KEY(usuario_id)
+    REFERENCES usuarios(id)
+);
+
+========================================
+🎉 FIN DEL INSTRUCTIVO
+========================================
+```
+

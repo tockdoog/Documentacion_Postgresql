@@ -1,0 +1,224 @@
+========================================
+📘 GUÍA PASO A PASO
+Cómo descargar e importar bases de datos en PostgreSQL usando pgAdmin
+========================================
+
+📌 OBJETIVO
+Aprender a descargar una base de datos existente e importarla correctamente en PostgreSQL usando pgAdmin.
+
+========================================
+📥 1. DESCARGAR UNA BASE DE DATOS
+========================================
+
+Si no tienes una base de datos para practicar, puedes descargar datasets gratuitos desde Kaggle:
+
+https://www.kaggle.com/datasets
+
+✅ RECOMENDACIONES:
+- Descargar archivos en formato .csv
+- Evitar archivos .ipynb (notebooks de Python)
+- Preferiblemente usar datasets pequeños o medianos
+
+----------------------------------------
+📂 PASOS PARA DESCARGAR
+----------------------------------------
+
+1. Entrar a Kaggle
+2. Buscar un dataset
+3. Abrir el dataset
+4. Dar click en el botón "Download"
+5. Se descargará un archivo .zip
+6. Descomprimir el archivo en una carpeta
+
+📌 Ejemplo:
+C:\BasesDeDatos\Netflix\
+
+Dentro de la carpeta deben aparecer archivos como:
+
+- movies.csv
+- users.csv
+- orders.csv
+
+========================================
+🛠️ 2. CREAR UNA NUEVA BASE DE DATOS
+========================================
+
+1. Abrir pgAdmin
+2. Conectarse al servidor PostgreSQL
+3. Expandir la opción "Databases"
+4. Click derecho sobre "Databases"
+5. Seleccionar "Create"
+6. Click en "Database"
+
+----------------------------------------
+✏️ CONFIGURAR LA BASE DE DATOS
+----------------------------------------
+
+Completar los siguientes campos:
+
+📌 Database:
+Nombre de la base de datos
+
+Ejemplo:
+NetflixDB
+
+📌 Owner:
+Seleccionar el usuario propietario
+
+Luego dar click en:
+
+💾 Save
+
+✅ La nueva base de datos aparecerá en la lista.
+
+========================================
+👤 3. ASIGNAR ROLES Y PERMISOS
+========================================
+
+📌 Esto depende de la función de cada usuario.
+
+1. Expandir:
+Login/Group Roles
+
+2. Crear o seleccionar un usuario
+
+3. Configurar permisos según necesidad:
+
+✅ Puede iniciar sesión
+✅ Puede crear bases de datos
+✅ Puede crear tablas
+✅ Puede ejecutar consultas
+
+📌 Ejemplo de roles:
+- Administrador
+- Desarrollador
+- Solo lectura
+
+========================================
+📂 4. IMPORTAR O RESTAURAR LA BASE DE DATOS
+========================================
+
+⚠️ IMPORTANTE:
+Existen DOS formas comunes de importar información:
+
+1. Restaurar una base de datos completa (.backup o .sql)
+2. Importar archivos .csv
+
+========================================
+🔄 OPCIÓN A - RESTORE (.backup o .sql)
+========================================
+
+📌 Usar esta opción cuando descargaste un backup completo.
+
+----------------------------------------
+📌 PASOS
+----------------------------------------
+
+1. Click derecho sobre la base de datos creada
+2. Seleccionar:
+Restore...
+
+3. En "Format" seleccionar el tipo de archivo:
+
+- Custom
+- Tar
+- Plain
+
+4. En "Filename" buscar el archivo descargado
+
+Ejemplo:
+C:\BasesDeDatos\backup.backup
+
+5. Dar click en:
+
+▶️ Restore
+
+6. Esperar a que termine el proceso
+
+✅ Si no aparecen errores, la restauración fue exitosa.
+
+----------------------------------------
+🔄 ACTUALIZAR TABLAS
+----------------------------------------
+
+1. Expandir:
+Schemas → public → Tables
+
+2. Click derecho en "Tables"
+
+3. Seleccionar:
+Refresh
+
+✅ Las tablas importadas deberán aparecer.
+
+========================================
+📄 OPCIÓN B - IMPORTAR ARCHIVOS CSV
+========================================
+
+📌 Esta es la opción más utilizada para datasets de Kaggle.
+
+----------------------------------------
+📌 PASOS
+----------------------------------------
+
+1. Crear primero una tabla manualmente
+
+Ejemplo:
+
+CREATE TABLE peliculas (
+    id INT,
+    titulo TEXT,
+    año INT
+);
+
+2. Click derecho sobre la tabla
+
+3. Seleccionar:
+Import/Export Data
+
+4. En "Filename" seleccionar el archivo .csv
+
+5. Configurar:
+
+✅ Format: CSV
+✅ Header: Yes
+✅ Delimiter: ,
+
+6. Dar click en:
+
+💾 OK
+
+✅ Los datos quedarán importados en la tabla.
+
+========================================
+🔍 5. REALIZAR CONSULTAS SQL
+========================================
+
+----------------------------------------
+📌 ABRIR QUERY TOOL
+----------------------------------------
+
+1. Expandir:
+Databases → TuBaseDeDatos → Schemas → public → Tables
+
+2. Click derecho sobre una tabla
+
+3. Seleccionar:
+Query Tool
+
+----------------------------------------
+📌 EJEMPLOS DE CONSULTAS
+----------------------------------------
+
+Ver todos los datos:
+
+SELECT * FROM peliculas;
+
+Contar registros:
+
+SELECT COUNT(*) FROM peliculas;
+
+Buscar información específica:
+
+SELECT * FROM peliculas
+WHERE año > 2020;

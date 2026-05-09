@@ -1,0 +1,106 @@
+=========================================================
+📘 GUÍA: PRIMERAS CONSULTAS SQL - INSERT INTO (PostgreSQL)
+=========================================================
+
+🧠 ¿QUÉ ES INSERT INTO?
+
+El comando INSERT INTO en SQL (PostgreSQL) se usa para AGREGAR datos nuevos dentro de una tabla.
+
+📦 Analogía sencilla:
+Imagina que una tabla es como una HOJA DE EXCEL o una CAJA ORGANIZADORA con compartimentos.
+Cada vez que usas INSERT INTO, estás metiendo un nuevo “registro” (fila) dentro de esa caja.
+
+Ejemplo:
+- Tabla = una libreta de contactos 📒
+- Cada fila = una persona 👤
+- INSERT INTO = escribir un nuevo contacto ✍️
+
+=========================================================
+🧱 ESTRUCTURA BÁSICA
+=========================================================
+
+La sintaxis general es:
+
+INSERT INTO nombre_tabla (columna1, columna2, columna3)
+VALUES (valor1, valor2, valor3);
+
+📌 Explicación:
+- INSERT INTO → indica que vas a insertar datos
+- nombre_tabla → la tabla donde vas a guardar los datos
+- columnas → las “casillas” donde irá la información
+- VALUES → los valores que vas a insertar
+
+=========================================================
+💡 EJEMPLO SIMPLE
+=========================================================
+
+Supongamos una tabla llamada estudiantes:
+
+INSERT INTO estudiantes (nombre, edad, ciudad)
+VALUES ('Juan', 20, 'Bogotá');
+
+📦 Analogía:
+Es como llenar un formulario:
+
+Nombre: Juan ✍️
+Edad: 20 🎂
+Ciudad: Bogotá 🌆
+
+=========================================================
+⚠️ REGLAS IMPORTANTES
+=========================================================
+
+1. El orden importa 🔢
+   Los valores deben coincidir con las columnas.
+
+2. Los textos van entre comillas simples ' ' 📝
+   Ejemplo: 'María'
+
+3. Los números NO llevan comillas 🔢
+   Ejemplo: 25
+
+4. Si no colocas columnas, debes insertar TODOS los valores:
+   
+   INSERT INTO estudiantes
+   VALUES ('Ana', 22, 'Cali');
+
+⚠️ Pero este método NO es recomendable en bases grandes.
+
+=========================================================
+🧠 BUENA PRÁCTICA
+=========================================================
+
+✔ Siempre especifica las columnas
+✔ Evita errores si la tabla cambia
+✔ Es más claro y profesional
+
+=========================================================
+📊 EJEMPLO MÁS REAL
+=========================================================
+
+INSERT INTO productos (nombre, precio, stock)
+VALUES ('Teclado mecánico', 120000, 15);
+
+🧩 Analogía:
+- nombre → etiqueta del producto 🏷️
+- precio → cuánto cuesta 💰
+- stock → cuántos hay disponibles 📦
+
+=========================================================
+🚀 RESUMEN RÁPIDO
+=========================================================
+
+INSERT INTO = agregar datos nuevos
+VALUES = los datos que estás agregando
+Cada fila = un nuevo registro en la tabla
+
+=========================================================
+🔥 CONSEJO FINAL
+=========================================================
+
+Piensa en SQL como un sistema de organización:
+
+📦 Tablas = cajas
+📄 Filas = objetos dentro
+✍️ INSERT INTO = meter algo nuevo en la caja
+=========================================================

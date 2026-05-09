@@ -1,0 +1,151 @@
+========================================
+ 📊 POSTGRESQL - FUNCIONES DE AGREGACIÓN
+========================================
+
+📌 ¿Qué son las funciones de agregación?
+
+Las funciones de agregación en SQL sirven para realizar cálculos sobre un conjunto de filas y devolver un único resultado.
+
+🧠 Analogía:
+Imagina que tienes una caja con muchas notas de estudiantes.
+En vez de mirar cada nota una por una, puedes hacer “resúmenes”:
+- promedio general
+- nota más alta
+- nota más baja
+- total de notas
+
+Eso es exactamente lo que hacen estas funciones en SQL.
+
+========================================
+🔢 COUNT() → CONTAR REGISTROS
+========================================
+
+📌 ¿Qué hace?
+Cuenta cuántas filas hay en una tabla o columna.
+
+💡 Ejemplo:
+SELECT COUNT(*) FROM estudiantes;
+
+📊 Resultado: número total de estudiantes.
+
+🧠 Analogía:
+Es como contar cuántas personas entraron a un salón 🎓
+
+⚠️ COUNT(*) cuenta TODO, incluso valores NULL.
+
+========================================
+➕ SUM() → SUMA TOTAL
+========================================
+
+📌 ¿Qué hace?
+Suma todos los valores de una columna numérica.
+
+💡 Ejemplo:
+SELECT SUM(salario) FROM empleados;
+
+📊 Resultado: total de salarios pagados.
+
+🧠 Analogía:
+Es como juntar todo el dinero de una alcancía 💰
+
+⚠️ Solo funciona con números.
+
+========================================
+📊 AVG() → PROMEDIO
+========================================
+
+📌 ¿Qué hace?
+Calcula el promedio de los valores.
+
+💡 Ejemplo:
+SELECT AVG(nota) FROM estudiantes;
+
+📊 Resultado: nota promedio del grupo.
+
+🧠 Analogía:
+Es como sacar “la nota general del salón” 🎓📘
+
+Fórmula mental:
+( suma de valores ) / cantidad de valores
+
+========================================
+⬆️ MAX() → VALOR MÁS ALTO
+========================================
+
+📌 ¿Qué hace?
+Devuelve el valor más grande de una columna.
+
+💡 Ejemplo:
+SELECT MAX(salario) FROM empleados;
+
+📊 Resultado: el salario más alto.
+
+🧠 Analogía:
+Es como buscar al estudiante con la mejor nota 🏆
+
+========================================
+⬇️ MIN() → VALOR MÁS BAJO
+========================================
+
+📌 ¿Qué hace?
+Devuelve el valor más pequeño de una columna.
+
+💡 Ejemplo:
+SELECT MIN(salario) FROM empleados;
+
+📊 Resultado: el salario más bajo.
+
+🧠 Analogía:
+Es como encontrar la nota más baja del examen 📉
+
+========================================
+🏷️ AS → ALIAS (RENOMBRAR RESULTADOS)
+========================================
+
+📌 ¿Qué hace?
+Permite darle un nombre personalizado a una columna o resultado.
+
+💡 Ejemplo:
+SELECT AVG(nota) AS promedio_general FROM estudiantes;
+
+📊 Resultado:
+En vez de ver “avg”, verás “promedio_general”.
+
+🧠 Analogía:
+Es como ponerle un apodo a un amigo 👤➡️ “El profe”, “El jefe”, etc.
+
+💡 Sirve para hacer los resultados más claros y entendibles.
+
+========================================
+🧪 EJEMPLO COMBINADO
+========================================
+
+SELECT
+    COUNT(*) AS total_estudiantes,
+    AVG(nota) AS promedio,
+    MAX(nota) AS nota_maxima,
+    MIN(nota) AS nota_minima
+FROM estudiantes;
+
+📊 Esto te da un resumen completo del grupo.
+
+🧠 Analogía:
+Es como pedirle a un sistema que te haga TODO el resumen del curso en un solo vistazo 📚✨
+
+========================================
+🚀 RESUMEN RÁPIDO
+========================================
+
+COUNT → contar registros 🔢  
+SUM → sumar valores ➕  
+AVG → promedio 📊  
+MAX → mayor valor ⬆️  
+MIN → menor valor ⬇️  
+AS → renombrar resultados 🏷️  
+
+========================================
+💡 CONSEJO FINAL
+
+Estas funciones se usan muchísimo en análisis de datos, reportes y dashboards.
+
+Piensa en ellas como “herramientas de resumen automático” 📊🤖

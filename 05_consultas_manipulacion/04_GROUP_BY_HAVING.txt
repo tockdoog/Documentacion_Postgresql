@@ -1,0 +1,147 @@
+===========================================================
+📘 POSTGRESQL - GROUP BY Y HAVING (GUÍA FÁCIL Y DETALLADA)
+===========================================================
+
+🔹 ¿QUÉ ES GROUP BY?
+-----------------------------------------------------------
+GROUP BY se usa para AGRUPAR filas que tienen valores iguales en una o varias columnas.
+
+📌 En palabras simples:
+Es como “ordenar personas en grupos según algo en común”.
+
+🧠 Analogía:
+Imagina una escuela 🎒
+- Agrupas a los estudiantes por grado:
+  👉 1° grado, 2° grado, 3° grado
+
+En SQL:
+- Agrupas datos por columnas similares (por ejemplo: ciudad, categoría, cliente, etc.)
+
+📊 Ejemplo:
+SELECT ciudad, COUNT(*)
+FROM clientes
+GROUP BY ciudad;
+
+👉 Esto cuenta cuántos clientes hay por cada ciudad.
+
+📌 Resultado:
+Bogotá → 10 clientes
+Medellín → 5 clientes
+
+
+🔹 ¿POR QUÉ SE USA GROUP BY?
+-----------------------------------------------------------
+Porque funciones como:
+- COUNT()
+- SUM()
+- AVG()
+- MAX()
+- MIN()
+
+necesitan saber “por grupo” de datos.
+
+🧠 Analogía:
+Es como calcular notas 🎓:
+- Promedio por curso
+- No promedio de toda la escuela mezclada
+
+
+===========================================================
+
+🔹 ¿QUÉ ES HAVING?
+===========================================================
+
+HAVING se usa para FILTRAR GRUPOS (NO filas individuales).
+
+📌 Importante:
+- WHERE filtra ANTES de agrupar
+- HAVING filtra DESPUÉS de agrupar
+
+🧠 Analogía:
+Imagina que ya hiciste grupos de estudiantes 👨‍🏫
+- Ahora quieres eliminar los grupos que tienen pocos alumnos.
+
+👉 HAVING trabaja sobre grupos ya formados.
+
+📊 Ejemplo:
+SELECT ciudad, COUNT(*)
+FROM clientes
+GROUP BY ciudad
+HAVING COUNT(*) > 5;
+
+👉 Solo muestra ciudades con más de 5 clientes
+
+
+===========================================================
+
+🔹 DIFERENCIA ENTRE WHERE Y HAVING
+===========================================================
+
+WHERE 🟢 → filtra filas antes del grupo
+HAVING 🔵 → filtra grupos después del GROUP BY
+
+🧠 Analogía simple:
+- WHERE = filtrar ingredientes antes de cocinar 🍅
+- HAVING = filtrar el plato ya cocinado 🍽️
+
+
+===========================================================
+
+🔹 EJEMPLO COMPLETO
+===========================================================
+
+SELECT ciudad, SUM(ventas) AS total_ventas
+FROM ventas
+WHERE ventas > 0
+GROUP BY ciudad
+HAVING SUM(ventas) > 1000;
+
+📌 Paso a paso:
+
+1️⃣ WHERE ventas > 0
+   → elimina ventas negativas o cero
+
+2️⃣ GROUP BY ciudad
+   → agrupa por ciudad
+
+3️⃣ SUM(ventas)
+   → suma ventas por ciudad
+
+4️⃣ HAVING SUM(ventas) > 1000
+   → muestra solo ciudades con ventas altas
+
+
+===========================================================
+
+🔹 RESUMEN RÁPIDO 🧠
+===========================================================
+
+📌 GROUP BY:
+→ Agrupa datos iguales
+
+📌 HAVING:
+→ Filtra grupos
+
+📌 WHERE:
+→ Filtra filas
+
+📌 Funciones comunes:
+→ COUNT, SUM, AVG, MAX, MIN
+
+
+===========================================================
+
+🔹 TRUCO PARA RECORDAR 🔥
+===========================================================
+
+WHERE = "ANTES del grupo"
+HAVING = "DESPUÉS del grupo"
+
+🧠 Piensa:
+Primero ordeno 📦 (GROUP BY)
+Luego filtro los paquetes 🚚 (HAVING)
+
+
+===========================================================
+FIN DE LA GUÍA 📘✨
+===========================================================

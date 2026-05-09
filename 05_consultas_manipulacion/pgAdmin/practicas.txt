@@ -1,0 +1,20 @@
+--------------------------------------------------
+🧠 IMPORTANTE SOBRE SQL
+--------------------------------------------------
+
+SQL NO distingue entre mayúsculas y minúsculas.
+
+Estas dos consultas funcionan igual:
+
+select * from public.clientes;
+
+SELECT * FROM public.clientes;
+
+✅ Pero por buenas prácticas:
+Las palabras reservadas de SQL se escriben en MAYÚSCULAS.
+
+Ejemplo correcto:
+
+SELECT * FROM public.clientes;
+
+📌 Esto ayuda a que el código sea más limpio y fácil de leer.

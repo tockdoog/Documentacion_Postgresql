@@ -97,45 +97,37 @@ Login/Group Roles
 ========================================
 📂 4. IMPORTAR O RESTAURAR LA BASE DE DATOS
 ========================================
+Si es un archivo diferente a .tar por ejemplo .csv se deben crear manualmente las tablas
 
-⚠️ IMPORTANTE:
-Existen DOS formas comunes de importar información:
+Esta es la tabla para los .csv
+| Si ves esto en el CSV | Tipo en PostgreSQL    |
+| --------------------- | --------------------- |
+| 1, 25, 999            | `INTEGER`             |
+| números enormes       | `BIGINT`              |
+| 10.5, 3.14            | `NUMERIC` o `DECIMAL` |
+| texto corto           | `VARCHAR(n)`          |
+| texto largo           | `TEXT`                |
+| fechas                | `DATE`                |
+| fecha + hora          | `TIMESTAMP`           |
+| true/false            | `BOOLEAN`             |
 
-1. Restaurar una base de datos completa (.backup o .sql)
-2. Importar archivos .csv
 
-========================================
-🔄 OPCIÓN A - RESTORE (.backup o .sql)
-========================================
+Dependiendo del valor de la columna de cada tabla debes ponerle el formato SQL
 
-📌 Usar esta opción cuando descargaste un backup completo.
+Despues de crear la tabla correctamente como en el .csv
 
-----------------------------------------
-📌 PASOS
-----------------------------------------
+darle click izquierdo a la tabla creada y seleccionar la opción Import/Export donde llenaras los datos
 
-1. Click derecho sobre la base de datos creada
-2. Seleccionar:
-Restore...
 
-3. En "Format" seleccionar el tipo de archivo:
+===========
+Si es .tar
+===========
 
-- Custom
-- Tar
-- Plain
+Seleccionar public con el click izquierdo
+Seleccioanr restore
+llenar los campos de ubicación
+y darle restore
 
-4. En "Filename" buscar el archivo descargado
-
-Ejemplo:
-C:\BasesDeDatos\backup.backup
-
-5. Dar click en:
-
-▶️ Restore
-
-6. Esperar a que termine el proceso
-
-✅ Si no aparecen errores, la restauración fue exitosa.
 
 ----------------------------------------
 🔄 ACTUALIZAR TABLAS
@@ -151,44 +143,7 @@ Refresh
 
 ✅ Las tablas importadas deberán aparecer.
 
-========================================
-📄 OPCIÓN B - IMPORTAR ARCHIVOS CSV
-========================================
 
-📌 Esta es la opción más utilizada para datasets de Kaggle.
-
-----------------------------------------
-📌 PASOS
-----------------------------------------
-
-1. Crear primero una tabla manualmente
-
-Ejemplo:
-
-CREATE TABLE peliculas (
-    id INT,
-    titulo TEXT,
-    año INT
-);
-
-2. Click derecho sobre la tabla
-
-3. Seleccionar:
-Import/Export Data
-
-4. En "Filename" seleccionar el archivo .csv
-
-5. Configurar:
-
-✅ Format: CSV
-✅ Header: Yes
-✅ Delimiter: ,
-
-6. Dar click en:
-
-💾 OK
-
-✅ Los datos quedarán importados en la tabla.
 
 ========================================
 🔍 5. REALIZAR CONSULTAS SQL

@@ -1,0 +1,236 @@
+========================================
+📘 PRIMERAS CONSULTAS SQL EN POSTGRESQL
+========================================
+
+🎯 Objetivo
+Aprender las bases de las consultas SQL usando:
+
+✅ SELECT
+✅ FROM
+✅ WHERE
+
+Estas son las instrucciones más importantes para comenzar a leer información de una base de datos en PostgreSQL usando pgAdmin.
+
+--------------------------------------------------
+🛠️ ¿CÓMO ABRIR EL QUERY TOOL EN pgAdmin?
+--------------------------------------------------
+
+Para comenzar a escribir consultas SQL en pgAdmin:
+
+1. Ve al panel izquierdo.
+2. Busca:
+   Databases → Tu Base de Datos → Schemas → public → Tables
+3. Sobre una tabla:
+   Click izquierdo o click derecho.
+4. Selecciona:
+   "Query Tool"
+
+📌 Esto abrirá el editor SQL donde podrás escribir consultas.
+
+💡 Analogía:
+Imagina que pgAdmin es una biblioteca 📚 y el Query Tool es la mesa donde escribes las instrucciones para pedir libros.
+
+
+--------------------------------------------------
+🔍 ¿QUÉ ES SELECT?
+--------------------------------------------------
+
+SELECT sirve para SELECCIONAR o MOSTRAR datos de una tabla.
+
+📌 Es la instrucción más usada en SQL.
+
+💡 Analogía:
+SELECT es como decirle a un mesero 🍽️:
+"Muéstrame lo que hay en la mesa".
+
+📌 Ejemplo:
+
+SELECT * FROM public.clientes;
+
+✅ Esto mostrará los datos de la tabla clientes.
+
+--------------------------------------------------
+⭐ ¿QUÉ HACE EL * (ASTERISCO)?
+--------------------------------------------------
+
+El símbolo * significa:
+"Traer TODAS las columnas".
+
+📌 Ejemplo:
+
+SELECT * FROM public.clientes;
+
+Esto podría mostrar:
+
+id | nombre | edad | ciudad
+
+✅ Todas las columnas.
+
+💡 Analogía:
+El * es como decir:
+"Quiero ver TODO el menú 🍔🍟🥤"
+
+--------------------------------------------------
+🧾 ¿CUÁNDO USAR *?
+--------------------------------------------------
+
+✅ Cuando:
+- Estás aprendiendo SQL.
+- Quieres ver toda la información.
+- Necesitas explorar una tabla.
+
+❌ Evita usarlo cuando:
+- La tabla tiene MUCHAS columnas.
+- Solo necesitas algunos datos específicos.
+- Quieres optimizar velocidad.
+
+📌 Mejor práctica:
+
+SELECT nombre, edad FROM public.clientes;
+
+✅ Solo trae las columnas necesarias.
+
+💡 Analogía:
+En vez de pedir TODO el menú,
+solo pides lo que vas a comer 🍕.
+
+--------------------------------------------------
+📦 ¿QUÉ ES FROM?
+--------------------------------------------------
+
+FROM indica DE DÓNDE se obtendrán los datos.
+
+📌 Básicamente:
+FROM especifica la tabla.
+
+💡 Analogía:
+SELECT es pedir información 📢
+y FROM es decir de qué cajón 📦 sacar esa información.
+
+📌 Ejemplo:
+
+SELECT * FROM public.clientes;
+
+Aquí:
+- SELECT → qué quiero ver
+- FROM → de qué tabla lo saco
+
+--------------------------------------------------
+🧠 ¿CUÁNDO USAR FROM?
+--------------------------------------------------
+
+✅ Siempre que necesites consultar datos de una tabla.
+
+Porque SQL necesita saber:
+📌 "¿De dónde saco la información?"
+
+--------------------------------------------------
+🎯 ¿QUÉ ES WHERE?
+--------------------------------------------------
+
+WHERE sirve para FILTRAR datos.
+
+📌 Permite mostrar solo los registros que cumplan una condición.
+
+💡 Analogía:
+WHERE es como usar un filtro de búsqueda 🔎.
+
+Ejemplo:
+"Muéstrame solo los clientes de Bogotá".
+
+--------------------------------------------------
+📌 EJEMPLO DE WHERE
+--------------------------------------------------
+
+SELECT * 
+FROM public.clientes
+WHERE ciudad = 'Bogotá';
+
+✅ Resultado:
+Solo aparecerán clientes de Bogotá.
+
+--------------------------------------------------
+🧠 ¿CUÁNDO USAR WHERE?
+--------------------------------------------------
+
+✅ Cuando NO quieres ver toda la información.
+
+Sirve para:
+- Buscar datos específicos
+- Filtrar resultados
+- Ahorrar tiempo
+- Organizar información
+
+💡 Analogía:
+Es como buscar un contacto específico en WhatsApp 📱
+en vez de revisar todos los chats.
+
+--------------------------------------------------
+📌 SINTAXIS EN pgAdmin
+--------------------------------------------------
+
+En PostgreSQL normalmente se usa:
+
+public.nombre_tabla
+
+📌 Ejemplo:
+
+public.clientes
+
+Donde:
+- public → esquema
+- clientes → tabla
+
+--------------------------------------------------
+✅ EJEMPLO COMPLETO
+--------------------------------------------------
+
+SELECT * FROM public.clientes;
+
+📌 Traducción humana:
+
+"Muéstrame todas las columnas
+de la tabla clientes"
+
+--------------------------------------------------
+✅ OTRO EJEMPLO CON WHERE
+--------------------------------------------------
+
+SELECT nombre, edad
+FROM public.clientes
+WHERE edad > 18;
+
+📌 Traducción humana:
+
+"Muéstrame el nombre y la edad
+de los clientes mayores de 18 años"
+
+--------------------------------------------------
+🧠 RESUMEN RÁPIDO
+--------------------------------------------------
+
+SELECT
+➡️ Selecciona datos.
+
+*
+➡️ Trae todas las columnas.
+
+FROM
+➡️ Indica de qué tabla obtener datos.
+
+WHERE
+➡️ Filtra información.
+
+--------------------------------------------------
+🔥 ESTRUCTURA BÁSICA DE UNA CONSULTA SQL
+--------------------------------------------------
+
+SELECT columnas
+FROM tabla
+WHERE condición;
+
+📌 Ejemplo:
+
+SELECT nombre
+FROM public.clientes
+WHERE ciudad = 'Bogotá';

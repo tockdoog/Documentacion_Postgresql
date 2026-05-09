@@ -1,0 +1,148 @@
+🎯 Objetivo
+Aprender las bases de las consultas SQL usando:
+
+🔹 ORDER BY → Ordena resultados
+🔹 BETWEEN → Filtra valores dentro de un rango
+
+Estas son las instrucciones más importantes para comenzar a leer información de una base de datos en PostgreSQL usando pgAdmin.
+
+--------------------------------------------------
+🛠️ ¿CÓMO ABRIR EL QUERY TOOL EN pgAdmin?
+--------------------------------------------------
+
+Para comenzar a escribir consultas SQL en pgAdmin:
+
+1. Ve al panel izquierdo.
+2. Busca:
+   Databases → Tu Base de Datos → Schemas → public → Tables
+3. Sobre una tabla:
+   Click izquierdo o click derecho.
+4. Selecciona:
+   "Query Tool"
+
+📌 Esto abrirá el editor SQL donde podrás escribir consultas.
+
+
+==================================================
+📌 ¿QUÉ ES ORDER BY?
+ORDER BY sirve para ordenar los resultados de una consulta.
+📦 Sintaxis básica:
+SELECT columnas
+FROM tabla
+ORDER BY columna;
+
+==================================================
+🔼 ORDEN ASCENDENTE (ASC).
+Ordena de menor a mayor.
+📌 Ejemplo:
+Números: 1 → 100
+Letras: A → Z
+Fechas: más antiguas → más recientes
+
+🧠 Analogía:
+Es como organizar estudiantes por estatura desde el más bajito hasta el más alto 👦➡️🧑
+
+📦 Ejemplo SQL:
+SELECT nombre, precio
+FROM productos
+ORDER BY precio ASC;
+
+📌 Explicación:
+Muestra productos ordenados por precio.
+ASC significa "Ascending" (ascendente).
+Es el orden por defecto.
+
+==================================================
+🔽 ORDEN DESCENDENTE (DESC)
+Ordena de mayor a menor.
+📌 Ejemplo:
+Números: 100 → 1
+Letras: Z → A
+Fechas: más recientes → más antiguas
+
+🧠 Analogía:
+Como un ranking de videojuegos 🎮:
+El jugador con más puntos aparece primero.
+
+📦 Ejemplo SQL:
+SELECT nombre, salario
+FROM empleados
+ORDER BY salario DESC;
+
+==================================================
+📌 ORDENAR POR VARIAS COLUMNAS
+También puedes ordenar usando varias columnas.
+
+SELECT nombre, apellido, edad
+FROM personas
+ORDER BY apellido ASC, edad DESC;
+
+
+📌 Explicación:
+Primero ordena por apellido.
+Si hay apellidos iguales:
+ordena por edad de mayor a menor.
+
+==================================================
+📌 ¿QUÉ ES BETWEEN?
+BETWEEN sirve para buscar valores dentro de un rango.
+📦 Sintaxis básica:
+SELECT columnas
+FROM tabla
+WHERE columna BETWEEN valor1 AND valor2;
+
+⚠️ IMPORTANTE:
+BETWEEN incluye ambos extremos del rango.
+Es decir:
+BETWEEN 10 AND 20
+Incluye:
+✅ 10
+✅ 20
+✅ y todos los números entre ellos
+
+==================================================
+🔢 BETWEEN CON NÚMEROS
+📦 Ejemplo:
+SELECT nombre, precio
+FROM productos
+WHERE precio BETWEEN 100 AND 500;
+
+📌 Explicación:
+Muestra productos con precios entre 100 y 500.
+
+==================================================
+📅 BETWEEN CON FECHAS
+📦 Ejemplo:
+SELECT nombre, fecha_venta
+FROM ventas
+WHERE fecha_venta BETWEEN '2025-01-01' AND '2025-12-31';
+
+📌 Explicación:
+Muestra ventas realizadas durante el año 2025.
+
+==================================================
+🔤 BETWEEN CON TEXTO
+También funciona con texto.
+📦 Ejemplo:
+SELECT nombre
+FROM clientes
+WHERE nombre BETWEEN 'Ana' AND 'Luis';
+
+📌 Explicación:
+Muestra nombres que estén alfabéticamente entre Ana y Luis.
+
+⚠️ Nota:
+Con texto, PostgreSQL usa el orden alfabético.
+
+==================================================
+📌 COMBINANDO BETWEEN Y ORDER BY
+Ambos comandos pueden trabajar juntos 🤝
+📦 Ejemplo:
+SELECT nombre, precio
+FROM productos
+WHERE precio BETWEEN 50 AND 300
+ORDER BY precio ASC;
+
+📌 Explicación:
+Filtra productos entre 50 y 300.
+Luego los ordena de menor a mayor.

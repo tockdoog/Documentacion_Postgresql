@@ -1,0 +1,131 @@
+=========================================================
+📘 POSTGRESQL - PRIMERAS CONSULTAS SQL
+Tema: LIKE e IN
+=========================================================
+
+---------------------------------------------------------
+1. 🔎 OPERADOR LIKE
+---------------------------------------------------------
+
+📌 ¿Qué es?
+LIKE se usa para buscar patrones dentro de texto en una columna.
+
+💡 En palabras simples:
+Es como decir: “búscame algo que se parezca a esto”.
+
+---------------------------------------------------------
+📊 Ejemplo en SQL:
+---------------------------------------------------------
+
+SELECT * FROM usuarios
+WHERE nombre LIKE 'Mar%';
+
+---------------------------------------------------------
+📌 Explicación:
+---------------------------------------------------------
+- 'Mar%' → significa que empieza con "Mar"
+- % → representa “cualquier cantidad de caracteres”
+
+---------------------------------------------------------
+🎯 Tipos de uso:
+---------------------------------------------------------
+
+🔹 'Mar%' → empieza con Mar
+🔹 '%io' → termina en io
+🔹 '%ar%' → contiene "ar" en cualquier parte
+
+---------------------------------------------------------
+🧪 Ejemplos:
+---------------------------------------------------------
+
+SELECT * FROM productos
+WHERE nombre LIKE '%tel%';
+
+👉 Encuentra: celular, teléfono, televisor
+
+---------------------------------------------------------
+⚠️ Importante:
+---------------------------------------------------------
+LIKE es sensible al patrón, no busca coincidencia exacta.
+
+=========================================================
+
+---------------------------------------------------------
+2. 📦 OPERADOR IN
+---------------------------------------------------------
+
+📌 ¿Qué es?
+IN sirve para buscar valores dentro de una lista.
+
+💡 En palabras simples:
+Es como decir: “quiero estos valores específicos, nada más”.
+
+---------------------------------------------------------
+🧠 Analogía:
+---------------------------------------------------------
+IN es como hacer una lista de invitados a una fiesta 🎉
+
+Solo entran los que estén en la lista:
+- Juan
+- Ana
+- Pedro
+
+Si no está en la lista, no entra.
+
+---------------------------------------------------------
+📊 Ejemplo en SQL:
+---------------------------------------------------------
+
+SELECT * FROM usuarios
+WHERE pais IN ('Colombia', 'México', 'Chile');
+
+---------------------------------------------------------
+📌 Explicación:
+---------------------------------------------------------
+Esto devuelve usuarios que sean de esos países EXACTOS.
+
+---------------------------------------------------------
+🧪 Ejemplo práctico:
+---------------------------------------------------------
+
+SELECT * FROM productos
+WHERE categoria IN ('Electrónica', 'Hogar', 'Deportes');
+
+👉 Solo muestra productos de esas categorías.
+
+---------------------------------------------------------
+⚠️ Importante:
+---------------------------------------------------------
+- IN NO busca patrones
+- IN busca coincidencias exactas
+
+=========================================================
+
+---------------------------------------------------------
+3. 🆚 DIFERENCIA ENTRE LIKE e IN
+---------------------------------------------------------
+
+LIKE:
+🔍 Busca patrones
+💬 Ejemplo: "empieza con", "contiene", "termina con"
+
+IN:
+📦 Busca valores exactos dentro de una lista
+💬 Ejemplo: "este o este o este"
+
+---------------------------------------------------------
+🧠 Analogía final:
+---------------------------------------------------------
+
+LIKE → “quiero algo que se parezca a esto” 🔎
+
+IN → “quiero estos exactos, ni uno más” 📋
+
+=========================================================
+
+🎯 RESUMEN RÁPIDO:
+
+LIKE → búsqueda flexible con texto
+IN → selección exacta de valores
+
+=========================================================

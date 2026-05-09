@@ -1,0 +1,199 @@
+========================================
+📘 GUÍA COMPLETA
+Importar archivos .CSV desde la terminal de PostgreSQL
+========================================
+
+📌 OBJETIVO
+Aprender a importar archivos .csv en PostgreSQL utilizando únicamente la terminal (psql).
+
+========================================
+🛠️ REQUISITOS
+========================================
+
+Antes de comenzar debes tener:
+
+✅ PostgreSQL instalado
+✅ Un usuario creado en PostgreSQL
+✅ Una base de datos creada
+✅ Un archivo .csv descargado
+✅ Acceso a la terminal o consola
+
+========================================
+📂 1. PREPARAR EL ARCHIVO CSV
+========================================
+
+📌 Ejemplo de archivo:
+
+peliculas.csv
+
+Contenido:
+
+id,titulo,año
+1,Avatar,2009
+2,Interstellar,2014
+3,Matrix,1999
+
+----------------------------------------
+📌 IMPORTANTE
+----------------------------------------
+
+✅ La primera fila normalmente contiene encabezados
+✅ Los datos deben estar separados por comas
+✅ El archivo debe tener extensión .csv
+
+========================================
+📁 2. UBICAR EL ARCHIVO CSV
+========================================
+
+Guardar el archivo en una carpeta fácil de acceder.
+
+📌 Ejemplo Windows:
+
+C:\BasesDeDatos\peliculas.csv
+
+📌 Ejemplo Linux:
+
+/home/usuario/bases/peliculas.csv
+
+========================================
+💻 3. ABRIR LA TERMINAL
+========================================
+
+📌 En Windows:
+
+- CMD
+- PowerShell
+- Terminal
+
+📌 En Linux:
+
+- Terminal
+
+========================================
+🔐 4. INGRESAR A POSTGRESQL
+========================================
+
+Ejecutar el siguiente comando:
+
+psql -U postgres
+
+📌 Explicación:
+
+- psql → terminal de PostgreSQL
+- -U → usuario
+
+----------------------------------------
+📌 EJEMPLO
+----------------------------------------
+
+psql -U postgres
+
+Luego solicitará la contraseña.
+
+✅ Si el acceso es correcto aparecerá algo similar:
+
+postgres=#
+
+========================================
+🗄️ 5. CREAR UNA BASE DE DATOS
+========================================
+
+Ejecutar:
+
+CREATE DATABASE peliculas_db;
+
+----------------------------------------
+📌 CONECTARSE A LA BASE DE DATOS
+----------------------------------------
+
+\c peliculas_db
+
+✅ Ahora trabajarás dentro de esa base de datos.
+
+========================================
+📋 6. CREAR LA TABLA
+========================================
+
+⚠️ IMPORTANTE
+
+La tabla debe coincidir con las columnas del archivo .csv.
+
+----------------------------------------
+📌 EJEMPLO
+----------------------------------------
+
+CREATE TABLE peliculas (
+    id INT,
+    titulo TEXT,
+    año INT
+);
+
+✅ La tabla ya está lista para importar datos.
+
+========================================
+📥 7. IMPORTAR EL ARCHIVO CSV
+========================================
+
+Usar el comando:
+
+\copy
+
+----------------------------------------
+📌 SINTAXIS
+----------------------------------------
+
+\copy nombre_tabla
+FROM 'ruta_del_archivo.csv'
+DELIMITER ','
+CSV HEADER;
+
+----------------------------------------
+📌 EJEMPLO WINDOWS
+----------------------------------------
+
+\copy peliculas
+FROM 'C:/BasesDeDatos/peliculas.csv'
+DELIMITER ','
+CSV HEADER;
+
+----------------------------------------
+📌 EJEMPLO LINUX
+----------------------------------------
+
+\copy peliculas
+FROM '/home/usuario/bases/peliculas.csv'
+DELIMITER ','
+CSV HEADER;
+
+========================================
+✅ 8. VERIFICAR LA IMPORTACIÓN
+========================================
+
+Ejecutar:
+
+SELECT * FROM peliculas;
+
+✅ Si aparecen registros, la importación fue exitosa.
+
+========================================
+🔍 9. CONSULTAS BÁSICAS
+========================================
+
+----------------------------------------
+📌 VER TODOS LOS DATOS
+----------------------------------------
+
+SELECT * FROM peliculas;
+
+----------------------------------------
+📌 CONTAR REGISTROS
+----------------------------------------
+
+SELECT COUNT(*) FROM peliculas;
+
+----------------------------------------
+📌 FILTRAR INFORMACIÓN
+----------------------------------------
+
+SELECT * FROM peliculas
+WHERE año > 2000;
